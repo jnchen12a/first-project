@@ -1,7 +1,5 @@
-countbuy = 0
-buytotal = 0
-buyaverage = 0
 buyp = 0
+buyps = []
 sellp = 0
 sellps = []
 sellaverage = 0
@@ -18,22 +16,19 @@ while True: #finding fixed costs
     except:
         print("That is not a number! Try again.")
 
-while True: #loop to determine total buying price
+while True: #loop to make list of selling prices
     buyp = input('Enter a buying price or done if finished: ')
     if buyp == 'done' or buyp == '':
         break
     try:
-        buytotal = buytotal + float(buyp)
+        buyps.append(float(buyp))
     except:
-        print("That is not a number!")
+        print("That is not a number! Try again or type 'done' when finished")
         continue
-    countbuy = countbuy + 1
 
-if countbuy == 0: #checking to make sure user is not a bozo
+if len(buyps) == 0: #checking to make sure user is not a bozo
     print("No prices entered.")
     quit()
-
-buyaverage = buytotal / countbuy #finding average buying price
 
 while True: #loop to make list of selling prices
     sellp = input('Enter a selling price or done if finished: ')
@@ -52,13 +47,13 @@ if len(sellps) == 0: #checking to make sure user is not a bozo (again)
 sellaverage = sum(sellps) / len(sellps) #finding average of selling prices
 sellq1 = (sellaverage + min(sellps)) / len(sellps)
 
-profit = sellq1 - buyaverage #finding profit or loss
+profit = sellq1 - min(buyps) #finding profit or loss
 
-print('Average price to buy:', buyaverage)
+print('Minimum price to buy:', min(buyps))
 print('Q1 of selling prices:', sellq1)
-if buyaverage + int(fixedcost) >= sellq1:
+if min(buyps) + int(fixedcost) >= sellq1:
     print("Not a good deal! Don't buy this!")
-    print("You would lose", profit, "dollars.")
+    print("You would lose", profit, "dollars per item.")
 else:
     print('Great deal! Buy this immediately!')
-    print("You would earn", profit, "dollars.")
+    print("You would earn", profit, "dollars per item.")
