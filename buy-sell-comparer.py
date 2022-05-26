@@ -52,7 +52,7 @@ if len(sellps) == 0: #checking to make sure user is not a bozo (again)
 sellaverage = sum(sellps) / len(sellps) #finding average of selling prices
 sellq1 = (sellaverage + min(sellps)) / len(sellps)
 
-profit = sellq1 - buyaverage
+profit = sellq1 - buyaverage #finding profit or loss
 
 print('Average price to buy:', buyaverage)
 print('Q1 of selling prices:', sellq1)
