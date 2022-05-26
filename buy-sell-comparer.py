@@ -16,7 +16,7 @@ while True: #finding fixed costs
     except:
         print("That is not a number! Try again.")
 
-while True: #loop to make list of selling prices
+while True: #loop to make list of buying prices
     buyp = input('Enter a buying price or done if finished: ')
     if buyp == 'done' or buyp == '':
         break
